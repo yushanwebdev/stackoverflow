@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    gender: "",
+  };
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.selectEle);
+  };
+
+  render() {
+    return (
+      <div className="col-3">
+        <select name="gender" id="id_gender" ref={this.selectEle}>
+          <option value="m">Male</option>
+          <option value="f">Female</option>
+        </select>
+        <button type="submit" onClick={this.onSubmit}>
+          Submit
+        </button>
+      </div>
+    );
+  }
 }
 
 export default App;

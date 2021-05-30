@@ -1,13 +1,15 @@
-import { Component } from "react";
+import { Component, createRef } from "react";
 
 class App extends Component {
-  state = {
-    gender: "",
-  };
+  constructor(props) {
+    super(props);
+    this.selectEle = createRef();
+    this.onSubmit = this.onSubmit.bind(this);
+  }
 
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(this.selectEle);
+    console.log(this.selectEle.current.value);
   };
 
   render() {

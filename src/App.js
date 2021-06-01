@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import TextField from "@material-ui/core/TextField";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ backgroundColor: "blue" }}>
+      <TextField
+        id="date"
+        label="Início "
+        type="date"
+        multiline={false}
+        defaultValue="2017-05-24"
+        InputLabelProps={{
+          color: "secondary",
+          className: "DatePicker",
+          style: { color: "#ffff" },
+          shrink: true,
+        }}
+        inputProps={{
+          style: { color: "#ffff" },
+        }}
+      />
     </div>
   );
 }

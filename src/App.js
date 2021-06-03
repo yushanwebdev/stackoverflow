@@ -1,59 +1,85 @@
-import TextField from "@material-ui/core/TextField";
+import React, { useState } from "react";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 function App() {
-  const [isAddProjectClicked, setisAddProjectClicked] = useState(true);
-  const [addProjectModal, openAddProjectModal] = useState("none");
+  const [selectedUser, setSelectedUser] = useState({
+    id: "",
+    name: "",
+    nameL: "",
+    email: "",
+    contact: "",
+    address: "",
+    date: "",
+  });
 
-  const renderAddProject = () => {
-    return (
-      <div>
-        <div className="task-accordion" style={{ display: addProjectModal }}>
-          <i
-            className="fa fa-close close-icon"
-            id="closeIconn"
-            onClick={() => openAddProjectModal("block")}
-            aria-hidden="true"
-          ></i>
+  const onChange = (e) => {
+    const property = e.target.name;
+    const value = e.target.value;
 
-          <h4>ADD Project</h4>
-          <div className="form-group">
-            <textarea
-              id="textAreaAddProject"
-              type="text"
-              style={{ height: "30vh" }}
-              placeholder="Project Title"
-              name="Title"
-              className="form-control"
-              required
-            />
-          </div>
-          <div className="col-sm-12 add-mupps-button">
-            <button type="submit">Save</button>
-          </div>
-        </div>
-      </div>
-    );
+    setSelectedUser({
+      ...selectedUser,
+      [property]: value,
+    });
   };
 
   return (
-    <div style={{ backgroundColor: "blue" }}>
-      <TextField
-        id="date"
-        label="Início "
-        type="date"
-        multiline={false}
-        defaultValue="2017-05-24"
-        InputLabelProps={{
-          color: "secondary",
-          className: "DatePicker",
-          style: { color: "#ffff" },
-          shrink: true,
-        }}
-        inputProps={{
-          style: { color: "#ffff" },
-        }}
-      />
-    </div>
+    <React.Fragment>
+      <Form>
+        <FormGroup>
+          <Label>FirstName</Label>
+          <Input
+            type="text"
+            name="name"
+            value={selectedUser.name}
+            onChange={onChange}
+            placeholder="enter first name"
+          ></Input>
+          <Label>Last Name:</Label>
+          <Input
+            type="text"
+            name="nameL"
+            value={selectedUser.nameL}
+            onChange={onChange}
+            placeholder="enter your Last name"
+          ></Input>
+          <Label>Email:</Label>
+          <Input
+            type="email"
+            name="email"
+            value={selectedUser.email}
+            onChange={onChange}
+            placeholder="Email Address"
+          ></Input>
+          <Label>Contact Number:</Label>
+          <Input
+            type="number"
+            name="contact"
+            value={selectedUser.contact}
+            onChange={onChange}
+            placeholder="Contact"
+          ></Input>
+          <Label>Address:</Label>
+          <Input
+            type="text"
+            name="address"
+            value={selectedUser.address}
+            onChange={onChange}
+            placeholder="enter your Address"
+          ></Input>
+          <Label>Date</Label>
+          <Input
+            type="date"
+            name="date"
+            value={selectedUser.date}
+            onChange={onChange}
+            placeholder="enter date employed"
+          ></Input>
+        </FormGroup>
+        <Button type="submit" className="btn btn-info">
+          Edit{" "}
+        </Button>
+      </Form>
+    </React.Fragment>
   );
 }
 

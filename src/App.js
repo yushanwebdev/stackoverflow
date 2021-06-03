@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { Line } from "react-chartjs-2";
+import { exportComponentAsPNG } from "react-component-export-image";
+import React, { useRef } from "react";
+import { data } from "./data";
 
-function App() {
+const Chart = React.forwardRef((props, ref) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div ref={ref} style={{ maxWidth: "800px" }}>
+      <Line data={data} height={80} />
+      <div id="legend" style={{ textAlign: "center", visibility: "hidden" }}>
+        Legend
+      </div>
     </div>
   );
-}
+});
+
+const App = () => {
+  const componentRef = useRef();
+
+  return (
+    <React.Fragment>
+      <Chart ref={componentRef} />
+      <button
+        style={{ margin: "30px" }}
+        onClick={() =>
+          exportComponentAsPNG(componentRef, {
+            html2CanvasOptions: {
+              onclone: (clonedDoc) => {
+                clonedDoc.getElementById("legend").style.visibility = "visible";
+              },
+            },
+          })
+        }
+      >
+        Export As PNG
+      </button>
+    </React.Fragment>
+  );
+};
 
 export default App;

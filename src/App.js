@@ -1,27 +1,35 @@
 import { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ActivityDisplay from "./ActivityDisplay";
-import ActivityForm from "./ActivityForm";
+import One from "./One";
+import Two from "./Two";
+import Three from "./Three";
+import Header from "./Header";
 
 class App extends Component {
-  renderForm = () => {
-    console.log("renderForm");
-    return <ActivityForm />;
-  };
-
-  renderTable = () => {
-    console.log("renderTable");
-    return <ActivityDisplay />;
-  };
+  routes = [
+    { path: "/one", component: One },
+    { path: "/two", component: Two },
+    { path: "/three", component: Three },
+  ];
 
   render() {
     return (
       <div className="container">
-        <h1 className="text-center main-title">Activity Logger</h1>
         <Router>
           <Switch>
-            <Route path="/activitydisplay" render={() => <ActivityDisplay />} />
-            <Route path="/" render={() => <ActivityForm />} />
+            {this.routes.map((route, index) => (
+              <Route key={index} path={route.path} component={Header} />
+            ))}
+          </Switch>
+
+          <Switch>
+            {this.routes.map((route, index) => (
+              <Route
+                key={index}
+                path={route.path}
+                component={route.component}
+              />
+            ))}
           </Switch>
         </Router>
       </div>

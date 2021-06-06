@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const ActivityDisplay = () => {
+const ActivityDisplay = (props) => {
   useEffect(() => {
     console.log("ActivityDisplay mounted");
 
@@ -13,6 +13,7 @@ const ActivityDisplay = () => {
   return (
     <>
       <h2>ActivityDisplay</h2>
+      <button onClick={props.updateMachineList}>Increase</button>
       <Link to="/">Click Me</Link>
     </>
   );

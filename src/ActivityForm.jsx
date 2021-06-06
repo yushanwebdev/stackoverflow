@@ -2,15 +2,12 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 
 class ActivityForm extends Component {
-  componentDidMount() {
-    console.log("ActivityForm mounted");
-  }
-
   componentWillUnmount() {
     console.log("ActivityForm unMounted");
   }
 
   render() {
+    console.table(this.props.machinesList);
     return (
       <>
         <h2>ActivityForm</h2>

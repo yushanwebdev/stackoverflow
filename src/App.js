@@ -1,36 +1,37 @@
 import { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import One from "./One";
-import Two from "./Two";
-import Three from "./Three";
-import Header from "./Header";
+import ActivityDisplay from "./ActivityDisplay";
+import ActivityForm from "./ActivityForm";
 
 class App extends Component {
-  routes = [
-    { path: "/one", component: One },
-    { path: "/two", component: Two },
-    { path: "/three", component: Three },
-  ];
+  state = {
+    machinesList: ["a", "b"],
+  };
+
+  updateMachineList = () => {
+    this.setState((prev) => ({
+      machinesList: prev.machinesList.concat("c"),
+    }));
+  };
+
+  renderForm = () => {
+    console.log("renderForm");
+    return <ActivityForm machinesList={this.state.machinesList} />;
+  };
+
+  renderTable = () => {
+    console.log("renderTable");
+    return <ActivityDisplay updateMachineList={this.updateMachineList} />;
+  };
 
   render() {
+    console.log(this.state);
     return (
       <div className="container">
+        <h1 className="text-center main-title">Activity Logger</h1>
         <Router>
-          <Switch>
-            {this.routes.map((route, index) => (
-              <Route key={index} path={route.path} component={Header} />
-            ))}
-          </Switch>
-
-          <Switch>
-            {this.routes.map((route, index) => (
-              <Route
-                key={index}
-                path={route.path}
-                component={route.component}
-              />
-            ))}
-          </Switch>
+          <Route path="/activitydisplay" render={() => this.renderTable()} />
+          <Route exact path="/" render={() => this.renderForm()} />
         </Router>
       </div>
     );

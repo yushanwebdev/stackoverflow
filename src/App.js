@@ -1,33 +1,20 @@
+import { useState } from "react";
+import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 
-import DOMPurify from "dompurify";
-import ReactHtmlParser from "react-html-parser";
-import data from "./data.json";
-const Chart = React.forwardRef((props, ref) => {
-  return (
-    <>{data.map((content) => ReactHtmlParser(DOMPurify.sanitize(content)))}</>  );
-});
+import "./App.css";
 
 const App = () => {
-  const componentRef = useRef();
+  const [date, updateDate] = useState();
+
+  const onChange = (e) => {
+    updateDate(e.text);
+  };
 
   return (
-    <React.Fragment>
-      <Chart ref={componentRef} />
-      <button
-        style={{ margin: "30px" }}
-        onClick={() =>
-          exportComponentAsPNG(componentRef, {
-            html2CanvasOptions: {
-              onclone: (clonedDoc) => {
-                clonedDoc.getElementById("legend").style.visibility = "visible";
-              },
-            },
-          })
-        }
-      >
-        Export As PNG
-      </button>
-    </React.Fragment>
+    <div className="container">
+      <DateRangePickerComponent change={onChange} />
+      <div>Date - {date}</div>
+    </div>
   );
 };
 

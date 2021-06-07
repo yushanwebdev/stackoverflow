@@ -1,17 +1,10 @@
-import { Line } from "react-chartjs-2";
-import { exportComponentAsPNG } from "react-component-export-image";
-import React, { useRef } from "react";
-import { data } from "./data";
 
+import DOMPurify from "dompurify";
+import ReactHtmlParser from "react-html-parser";
+import data from "./data.json";
 const Chart = React.forwardRef((props, ref) => {
   return (
-    <div ref={ref} style={{ maxWidth: "800px" }}>
-      <Line data={data} height={80} />
-      <div id="legend" style={{ textAlign: "center", visibility: "hidden" }}>
-        Legend
-      </div>
-    </div>
-  );
+    <>{data.map((content) => ReactHtmlParser(DOMPurify.sanitize(content)))}</>  );
 });
 
 const App = () => {

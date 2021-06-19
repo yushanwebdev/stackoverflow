@@ -1,13 +1,6 @@
-import logo from "./logo.svg";
+import Home from "./Home";
 import "./App.css";
-import { ActiveMembership } from "./ActiveMembership";
 
-function App() {
-  return (
-    <div className="App">
-      <ActiveMembership />
-    </div>
-  );
+export default function App() {
+  return <Home />;
 }
-
-export default App;

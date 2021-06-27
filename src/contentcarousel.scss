@@ -1,0 +1,44 @@
+@import "~slick-carousel/slick/slick.scss"; 
+
+.content-carousel {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+
+  .slick-controls {
+    position: absolute;
+    z-index: 1;
+    top: 53px;
+    left: 60px;
+  }
+
+  .content-carousel-card {
+    .card-content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      padding: 0 60px;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        z-index: 1;
+        width: calc(100% - 2px);
+        height: calc(100% - 50px);
+        top: 50%;
+        transform: translateY(-50%);
+        border: 1px solid #000;
+        left: 0px;
+        border-radius: 50px;
+      }
+
+      .text-box {
+        padding-right: 50px;
+      }
+    }
+  }
+}

@@ -1,5 +1,4 @@
 import ContentCarousel from "./ContentCarousel";
-import "./App.css";
 
 function App() {
   return (
